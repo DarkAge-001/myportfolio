@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const heading = document.querySelector("h1");
+            heading.style.opacity = 0;
+            heading.style.transform = "translateY(-20px)";
+
+            setTimeout(() => {
+                heading.style.transition = "opacity 1s, transform 1s";
+                heading.style.opacity = 1;
+                heading.style.transform = "translateY(0)";
+            }, 500);
+        });
+    </script>
 </head>
 <body>
     <header>
