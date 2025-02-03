@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #222;
+    color: white;
+    padding: 10px;
+}
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
+.grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.project img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
