@@ -87,6 +87,10 @@ body {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
+.home-container h2 {
+    color: #28a745;
+    font-family: 'Times New Roman', Times, serif;
+}
 /* Adding an overlay blurry background for the Home page */
 .home-container::before {
     content: "";
