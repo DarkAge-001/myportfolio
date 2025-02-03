@@ -335,7 +335,7 @@ nav a {
     background: url("/images/background.jpg") no-repeat center fixed;
     background-size: cover;
 
-    /*display: flex;*/
+    align-items: center;
     gap: 20px; /* Adds space between image and text */
     padding: 20px; /* optional padding*/
 
