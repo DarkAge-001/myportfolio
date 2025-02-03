@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
@@ -31,14 +32,47 @@
         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
+            <a href="resume.html">Resume</a>
             <a href="portfolio.html">Portfolio</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
-    <section>
-        <h2>Let's Connect</h2>
-        <p>Email: godstimeatuegbe48@gmail.com</p>
-        <p>GitHub: <a href="https://github.com/DarkAge-01">My GitHub</a></p>
-    </section>
+    <section id="contact">
+        <div class="contact-container">
+            <h2>Get in Touch</h2>
+            <form action="https://formspree.io/f/meoeoojy" method="POST">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Tell us more about your needs..." required></textarea>
+                <button type="submit">Send Messages</button>
+            </form>
+
+            <div class="contact-address">
+                <strong>ADDRESS</strong>
+                <p>12 Wilbros Estate,</p>
+                <p>Tipper Garage, Chokocho.</p>
+                <p>Etche L.G.A, Rivers State.</p>
+            </div>
+
+            <div class="number">
+                <p>+234 810 631 3407</p>
+                <p>godstimeatuegbe48@gmail.com</p>
+            </div>
+
+            <div class="social-media">
+                <p><strong>FOLLOW ME</strong></p>
+                <a href="https://x.com/official_age01?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/official_age1?igsh=aXdidjk3aDU3Y3ow&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/god%E2%80%99stime-atuegbe-a026ab2b9" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/DarkAge-001" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://wa.me/2348106313407" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Atuegbe God'stime Ehischioya. All Rights Reserved.</p>
+            <p>Terms & Policy | Disclaimer</p>
+        </footer>
+     </section>
 </body>
 </html>
