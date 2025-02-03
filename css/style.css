@@ -4,6 +4,110 @@ body {
     margin: 0;
     padding: 0;
 }
+/* Container*/
+.container {
+    display: flex;
+    height: 100lvh;
+}
+
+/*Sidebar styles*/
+.sidebar {
+    background: #1a1a1a;
+    color: #fff;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: center;
+    height: 100lvh;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #444;
+}
+
+.sidebar a.active {
+    background-color: #008cba;
+}
+
+.sidebar .profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.sidebar nav ul li {
+    margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.sidebar footer {
+    font-size: 12px;
+}
+
+/* Home page */
+.home-container {
+    flex: 1;
+    background-image: url("/images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    color: #fff;
+
+    
+    /* Add a blur effect */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Animated title for home page */
+.animated-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    overflow: hidden;
+    border-right: 0.15em solid #fff;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typing 3.5s steps(40, end), blink-caret 0.5s step-end infinite;
+}
+
+/* Home page paragraph */
+.p-home {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: #e5e6ba;
+    line-height: 1.2;
+}
 header {
     background-color: #222;
     color: white;
@@ -23,4 +127,58 @@ nav a {
     width: 150px;
     height: 150px;
     border-radius: 10px;
+}
+
+/* General Transistion for smooth Animations */
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Highlight Active Navigation Link*/
+.sidebar nav ul li a.active {
+    color: #28a745;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*Section Animation*/
+section {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s forwards;
+}
+
+section:nth-child(even) {
+    animation-delay: 0.3s;
+}
+
+section:nth-child(odd) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #e5e6ba;
+    }
 }

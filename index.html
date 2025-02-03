@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- AOS - Animate on scroll library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> 
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const heading = document.querySelector("h1");
@@ -26,18 +28,44 @@
     </script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Portfolio</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    <section>
-        <h2>Hi, I'm Atuegbe God'stime Ehischioya</h2>
-        <p>An Electrical Engineer specializing in Instrumentation & Control.</p>
-    </section>
+    <div class="container">
+        <!-- Sidebar -->
+         <div class="sidebar">
+            <div class="profile">
+                <img src="images/profile.jpg" alt="Profile Picture">
+                <h2>Atuegbe God'stime Ehischioya</h2>
+            </div>
+            <nav>
+                <ul>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="contact.html">Contact</a>
+                </ul>
+            </nav>
+            <footer>
+                <p>&copy; 2025 Atuegbe God'stime Ehischioya</p>
+            </footer>
+         </div>
+         <div class="home-container">
+            <h2>Welcome</h2>
+            <h1 class="animated-title">I'm Atuegbe God'stime Ehischioya</h1>
+            <p class="p-home">based in Port-Harcourt, Rivers state Nigeria.</p>
+            <a href="contact.html" class="styled-button">Hire Me</a>
+        </div>
+    </div>   
+    
+    <script>
+        const text = "Welcome to My Portfolio";
+        let index = 0;
+
+        function typeText() {
+            document.getElementById("tying").textContent = text.slice(0, index++);
+            if (index <= text.length) {
+                setTimeout(typeText, 100);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", typeText);
+    </script>
 </body>
 </html>
