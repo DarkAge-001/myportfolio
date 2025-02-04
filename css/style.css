@@ -508,7 +508,6 @@ nav a {
     flex: 1;
     background: url("/images/background.jpg") no-repeat center fixed;
     background-size: cover;
-    height: 100vh;
 
     /* Add a blur effect */
     backdrop-filter: blur(8px);
