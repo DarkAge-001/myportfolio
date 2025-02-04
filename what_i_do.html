@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What I Do</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const heading = document.querySelector("h1");
+            heading.style.opacity = 0;
+            heading.style.transform = "translateY(-20px)";
+
+            setTimeout(() => {
+                heading.style.transition = "opacity 1s, transform 1s";
+                heading.style.opacity = 1;
+                heading.style.transform = "translateY(0)";
+            }, 500);
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            AOS.init();
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>What I Do</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="what_i_do.html">What I Do</a>
+            <a href="resume.html">Resume</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <section>
+        <div class="what-i-do">
+            <h1>Work Summary</h1>
+            <p class="what-description">I specialize in the dynamic fields of Electrical engineering and Python programming.</p>
+            <ul class="work-list">
+                <li>
+                    <strong>Electrical systems circuitry Design</strong>
+                    <p> * I implore the use of softwares such as Professional 8 proteus software to design basic electric circuit diagrams and schematics for electrical projects. </p>
+                    <p> * I also run simulations on these designs to ensure accurate and 100% efficiency in its working operation. </p>
+                    <p> * Some Designs include: Schematics, block diagram and electrical wiring diagram. </p>
+                </li>
+                <li>
+                    <strong>Power distribution management</strong>
+                    <p> * Experience gotten during my SIWES Intership training at Federal Airport Authority of Nigeria - Port-Harcourt International Airport (FAAN-PHIA). </p>
+                    <p> * I am trained on how to manage power distribution using a Ring main distribution system. </p>
+                    <p> * I am capable of manually operating a Ring Main Unit (RMU) to ensure smooth and efficient power distribution. </p>
+                    <p> * I can connect a ring main unit within a ring system. Such as from a 11kva or 33kva power source to its primary or secondary load substations using feeder pillars,
+                        for efficient power management. </p>
+                </li>
+                <li>
+                    <strong>General Electrical system installation and maintenance</strong>
+                    <p> * I am skilled in replacing and repairing faulty luminaires in residential, commercial, and industrial buildings. </p>
+                    <p> * I have expertise in repairing electrical devices such as electric fans, sockets, and addressing issues with household wiring systems. </p>
+                </li>
+                <li>
+                    <strong>Design and Construction of Electrical Projects</strong>
+                    <p> * I specialize in the design and construction of innovative and technically sound projects. </p>
+                    <p> * I program Arduino boards with C++ to perform various special tasks.</p>
+                </li>
+                <li>
+                    <strong>Web Design and Python Developer</strong>
+                    <p> * My technical expertise spans Python programming, Flask, HTML, CSS. </p>
+                    <p> * I have repositories in GitHub containing codes based on past projects carried out during internships and personally development. </p>
+                </li>
+            </ul>
+            <div class="skill">
+                <h2> My skills </h2>
+                <div class="skill-row">
+                    <div class="skill-name">Web design</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 65%;"></div>
+                    </div>
+                    <div class="skill-percentage">65%</div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-name">Python programming</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 60%;"></div>
+                    </div>
+                    <div class="skill-percentage">60%</div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-name">Microsoft packages</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 85%;"></div>
+                    </div>
+                    <div class="skill-percentage">85%</div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-name">Decision Making</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 80%;"></div>
+                    </div>
+                    <div class="skill-percentage">80%</div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-name">Team work</div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 90%;"></div>
+                    </div>
+                    <div class="skill-percentage">90%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

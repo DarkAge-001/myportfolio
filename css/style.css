@@ -60,7 +60,7 @@ section:nth-child(odd) {
 /* Container*/
 .container {
     display: flex;
-    height: 100dvh;
+    height: 100vh;
 }
 
 /*Sidebar styles*/
@@ -73,7 +73,7 @@ section:nth-child(odd) {
     justify-content: space-between;
     padding: 20px;
     text-align: center;
-    height: 100lvh;
+    height: 100vh;
 }
 
 .sidebar a {
@@ -122,16 +122,13 @@ section:nth-child(odd) {
 /* Home page */
 .home-container {
     flex: 1;
-    background-image: url("/images/background.jpg");
+    background: url("/images/background.jpg") no-repeat center;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     height: 100vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
     justify-content: center;
     color: #fff;
 
@@ -178,6 +175,7 @@ section:nth-child(odd) {
 }
 /* Hire me button */
 .styled-button {
+    text-decoration: none;
     margin-top: 20px;
     padding: 10px 20px;
     background: transparent;
@@ -214,7 +212,6 @@ nav a {
     background-size: cover;
     padding: 20px;
     color: #fff;
-    text-align: center;
 
     /* Add a blur effect */
     backdrop-filter: blur(8px);
@@ -232,14 +229,14 @@ nav a {
 }
 .about-container h1 {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #1fca47;
 }
 
 .about-description {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 10px auto;
     max-width: fit-content;
     line-height: 1.5;
@@ -253,10 +250,10 @@ nav a {
 }
 
 .awards-section h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #28a745;
+    color: #1fca47;
 }
 
 .awards-list {
@@ -265,12 +262,11 @@ nav a {
 }
 
 .awards-list li {
-    background: rgb(0, 0, 0, 0.2);
+    background: rgb(0, 0, 0, 0.3);
     margin: 15px 0;
     padding: 15px;
     border-radius: 8px;
     cursor: pointer;
-    align-items: center;
 }
 
 .awards-list li i {
@@ -280,16 +276,14 @@ nav a {
 
 .awards-list li strong {
     font-size: 1.2rem;
-    color: #28a745;
+    color: #1fca47;
 }
 
 .awards-list p {
     margin: 5px 0 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.5;
-    font-family: 'Times New Roman', Times, serif;
 }
-
 
 /* cv section */
 .cv-section {
@@ -297,14 +291,14 @@ nav a {
 }
 
 .cv-section h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
 .download-button {
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #fff;
     background-color: #28a745;
     padding: 10px 20px;
@@ -317,29 +311,103 @@ nav a {
     color: #fff;
 }
 
+/* What I Do */
+.what-i-do {
+    flex: 1;
+    background-color: rgb(21, 32, 53);
+    background-size: cover;
+    
+    padding: 20px;
+    color: #fff;
+    
 
-.grid {
+    /* Add a blur effect 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);*/
+    
+}
+/*.what-i-do::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0, 0.6); /*Semi-transperant overlay
+    z-index: -1;  keep it behind the text
+}*/
+.what-i-do h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745;
+}
+.what-description {
+    font-size: 1rem;
+}
+.work-list {
+    list-style: none;
+    padding: 0;
+    text-align: justify;
+}
+
+.work-list li {
+    background: rgb(0, 0, 0, 0.2);
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 8px;
+}
+.work-list li strong {
+    font-size: 1.2rem;
+    color: #28a745;
+}
+
+.work-list p {
+    margin: 5px 0 0;
+    font-size: 1rem;
+}
+.skill {
+    align-items: center;
+}
+.skill h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #28a745;
+}
+.skill-row {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
 }
-.project img {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
+.skill-name {
+    font-size: 1rem;
+    color: #fff;
 }
+.skill-bar {
+    width: 80%;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.skill-bar-fill {
+    height: 100%;
+    background-color: #2ecc71;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
 
 /* Resume page styling */
 .resume-header {
     flex: 1;
-    background: url("images/background.jpg") no-repeat center fixed;
+    background: url("/images/background.jpg") no-repeat center fixed;
     background-size: cover;
 
-    align-items: center;
     gap: 20px; /* Adds space between image and text */
     padding: 20px; /* optional padding*/
-    background-color: #1a1a1a;
-    /* Add a blur effect 
+
+    /* Add a blur effect */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -351,7 +419,7 @@ nav a {
     width: 100%;
     height: 100%;
     background: rgb(0, 0, 0, 0.6); /*Semi-transperant overlay*/
-    z-index: -1;  keep it behind the text*/
+    z-index: -1;  /*keep it behind the text*/
 }
 .profile-picture img {
     width: 150px;
@@ -363,10 +431,12 @@ nav a {
     display: flex;
 }
 .profile-details {
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1;
     font-family: 'Times New Roman', Times, serif;
     color: #f1f1f1;
+    text-align: left;
+    margin-left: 20px;
 }
 
 .profile-details strong {
@@ -377,9 +447,10 @@ nav a {
     text-align: left;
 }
 .education h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    color: #25a8cf;
 }
 .education-list {
     list-style: none;
@@ -387,40 +458,34 @@ nav a {
 }
 
 .education-list li {
-    background: rgb(0, 0, 0, 0.2);
+    background: rgb(0, 0, 0, 0.4);
     margin: 15px 0;
     padding: 15px;
     border-radius: 8px;
     align-items: center;
 }
 .date {
-    text-decoration: none;
+    text-indent: 10px;
     font-size: 1rem;
     color: #fff;
     background-color: #62b876;
     padding: 1px;
-    border-radius: 20px;
-    align-items: center;
+    border-radius: 10px;
 }
 .education-list li strong {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #4cdf47;
 }
 
 .education-list p {
     margin: 5px 0 0;
-    font-size: 1.2rem;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.5;
 }
 
 .resume-section {
     margin-top: 50px;
-}
-
-.resume-section h2 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
 }
 
 .download-resume {
@@ -443,13 +508,13 @@ nav a {
     flex: 1;
     background: url("/images/background.jpg") no-repeat center fixed;
     background-size: cover;
-    
+    height: 100vh;
+
     /* Add a blur effect */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
     padding: 20px;
-    text-align: center;
 }
 #portfolio::before {
     content: "";
@@ -513,7 +578,6 @@ nav a {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
-    text-align: center;
     padding: 50px 20px;
 }
 #contact::before {
@@ -536,7 +600,7 @@ nav a {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0 auto;
 }
 .contact-container input, .contact-container textarea {
@@ -561,9 +625,7 @@ nav a {
 }
 
 .contact-address {
-    text-align: center;
     margin-top: 60px;
-    font-family: 'Times New Roman', Times, serif;
     font-size: 1.2rem;
 }
 .contact-address strong {
