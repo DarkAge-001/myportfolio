@@ -355,9 +355,8 @@ nav a {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    gap: 20px; /* Adds space between image and text */
+    gap: 0px; /* Adds space between image and text */
     padding: 20px; /* optional padding*/
-    width: auto;
 
     /* Add a blur effect */
     backdrop-filter: blur(8px);
