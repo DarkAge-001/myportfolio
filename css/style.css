@@ -122,8 +122,9 @@ section:nth-child(odd) {
 /* Home page */
 .home-container {
     flex: 1;
-    background: url("/images/background.jpg") no-repeat center;
+    background-image: url("/images/background.jpg");
     background-size: cover;
+    background-position: center;
     height: 100vh;
     padding: 20px;
     display: flex;
