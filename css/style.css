@@ -553,7 +553,7 @@ nav a {
     flex-direction: column;
     gap: 15px;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 .contact-container input, .contact-container textarea {
     width: 100%;
