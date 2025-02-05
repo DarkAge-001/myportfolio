@@ -386,7 +386,6 @@ nav a {
     font-size: 1rem;
     line-height: 1;
     color: #f1f1f1;
-    text-align: left;
     margin-left: 10px;
 }
 
@@ -396,7 +395,6 @@ nav a {
 .education {
     margin-top: 40px;
     text-align: left;
-    width: auto;
 }
 .education h2 {
     font-size: 1.3rem;
