@@ -209,8 +209,9 @@ nav a {
 /* About Page */
 .about-container {
     flex: 1;
-    background: url("/images/background.jpg") no-repeat center fixed;
+    background-image: url("https://darkage-001.github.io/myportfolio/images/background.jpg");
     background-size: cover;
+    background-position: center;
     padding: 20px;
     color: #fff;
 
