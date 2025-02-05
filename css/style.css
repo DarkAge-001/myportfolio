@@ -394,7 +394,7 @@ nav a {
 }
 .education {
     margin-top: 40px;
-    text-align: left;
+    text-align: justify;
 }
 .education h2 {
     font-size: 1.3rem;
