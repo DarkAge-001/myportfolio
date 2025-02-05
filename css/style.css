@@ -380,7 +380,7 @@ nav a {
 }
 .box-header {
     display: flex;
-    margin: 10px;
+    align-items: center;
 }
 .profile-details {
     font-size: 1rem;
@@ -556,7 +556,8 @@ nav a {
     flex-direction: column;
     gap: 15px;
     max-width: 400px;
-    margin: 5 auto;
+    margin: 0 auto;
+    align-items: center;
 }
 .contact-container input, .contact-container textarea {
     width: 100%;
