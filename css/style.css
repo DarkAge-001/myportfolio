@@ -3,59 +3,7 @@ body {
     margin: 0;
     padding: 0;
 }
-/* General Transistion for smooth Animations */
-* {
-    transition: all 0.3s ease-in-out;
-}
 
-/* Highlight Active Navigation Link*/
-.sidebar nav ul li a.active {
-    color: #28a745;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/*Section Animation*/
-section {
-    opacity: 0;
-    transform: translateY(50px);
-    animation: fadeInUp 1s forwards;
-}
-
-section:nth-child(even) {
-    animation-delay: 0.3s;
-}
-
-section:nth-child(odd) {
-    animation-delay: 0.6s;
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Typing animation */
-@keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes blink-caret {
-    from,
-    to {
-        border-color: transparent;
-    }
-    50% {
-        border-color: #e5e6ba;
-    }
-}
 
 /* Container*/
 .container {
@@ -403,9 +351,10 @@ nav a {
 /* Resume page styling */
 .resume-header {
     flex: 1;
-    background: url("/images/background.jpg") no-repeat center fixed;
+    background-image: url("https://darkage-001.github.io/myportfolio/images/background.jpg");
     background-size: cover;
-
+    background-position: center;
+    background-attachment: fixed;
     gap: 20px; /* Adds space between image and text */
     padding: 20px; /* optional padding*/
 
@@ -508,8 +457,10 @@ nav a {
 /* Portfolio page */
 #portfolio {
     flex: 1;
-    background: url("/images/background.jpg") no-repeat center fixed;
+    background-image: url("https://darkage-001.github.io/myportfolio/images/background.jpg");
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 
     /* Add a blur effect */
     backdrop-filter: blur(8px);
@@ -572,8 +523,10 @@ nav a {
 /* Contact Page */
 #contact {
     flex: 1;
-    background: url("/images/background.jpg") no-repeat center fixed;
+    background-image: url("https://darkage-001.github.io/myportfolio/images/background.jpg");
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     
     /* Add a blur effect */
     backdrop-filter: blur(8px);
@@ -664,4 +617,59 @@ nav a {
     font-size: 1rem;
     color: #ccc;
     margin-bottom: 10px;
+}
+
+
+/* General Transistion for smooth Animations */
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Highlight Active Navigation Link*/
+.sidebar nav ul li a.active {
+    color: #28a745;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*Section Animation*/
+section {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s forwards;
+}
+
+section:nth-child(even) {
+    animation-delay: 0.3s;
+}
+
+section:nth-child(odd) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #e5e6ba;
+    }
 }
