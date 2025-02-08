@@ -264,28 +264,14 @@ nav a {
 /* What I Do */
 .what-i-do {
     flex: 1;
-    background-color: rgb(21, 32, 53);
+    background-color: rgba(12, 15, 19, 0.911);
     background-size: cover;
     
     padding: 20px;
     color: #fff;
     
-
-    /* Add a blur effect 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);*/
-    
 }
-/*.what-i-do::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(0, 0, 0, 0.6); /*Semi-transperant overlay
-    z-index: -1;  keep it behind the text
-}*/
+
 .what-i-do h1 {
     font-size: 1.5rem;
     font-weight: bold;
@@ -308,7 +294,7 @@ nav a {
 }
 .work-list li strong {
     font-size: 1.2rem;
-    color: #28a745;
+    color: #FCA311;
 }
 
 .work-list p {
