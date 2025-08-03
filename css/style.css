@@ -83,8 +83,8 @@ body {
 
     
     /* Add a blur effect */
-    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 .home-container h2 {
     color: #28a745;
@@ -164,8 +164,8 @@ nav a {
     color: #fff;
 
     /* Add a blur effect */
-    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 .about-container::before {
     content: "";
@@ -345,8 +345,8 @@ nav a {
     padding: 20px; /* optional padding*/
 
     /* Add a blur effect */
-    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 .resume-header::before {
     content: "";
@@ -447,8 +447,8 @@ nav a {
     background-attachment: fixed;
 
     /* Add a blur effect */
-    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 
     padding: 20px;
 }
@@ -513,8 +513,8 @@ nav a {
     background-attachment: fixed;
     
     /* Add a blur effect */
-    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 
     padding: 50px 20px;
 }
