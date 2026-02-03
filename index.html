@@ -1,60 +1,1484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- gOOgle Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNNR8CDE5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-YMNNR8CDE5');
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atuegbe God'stime — Electrical Engineer & Developer</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNNR8CDE5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YMNNR8CDE5');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ============================================================
+   RESET & ROOT
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0a0c0f;
+  --surface:   #111416;
+  --surface2:  #181c22;
+  --border:    rgba(255,255,255,.07);
+  --text:      #e2e4e8;
+  --text-dim:  #6b7280;
+  --accent:    #39e079;
+  --accent2:   #22c55e;
+  --accent-glow: rgba(57,224,121,.18);
+  --gold:      #f0c040;
+  --cyan:      #38bdf8;
+  --font-head: 'Syne', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-mono);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+input, textarea, button { font-family: inherit; }
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* ============================================================
+   PROGRESS BAR (top)
+   ============================================================ */
+#progress-bar {
+  position: fixed; top: 0; left: 0;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+  z-index: 9999;
+  transition: width .15s linear;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav#main-nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 40px;
+  background: rgba(10,12,15,.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: padding .3s, background .3s;
+}
+nav#main-nav.scrolled { padding: 10px 40px; background: rgba(10,12,15,.92); }
+
+.nav-logo {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -.02em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.nav-logo span { color: var(--text-dim); font-weight: 400; }
+
+.nav-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.nav-links a {
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color .3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width .3s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile overlay nav */
+.mobile-nav-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(10,12,15,.97);
+  flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+}
+.mobile-nav-overlay.open { display: flex; }
+.mobile-nav-overlay a {
+  font-family: var(--font-head);
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: .05em;
+  transition: color .3s, transform .3s;
+}
+.mobile-nav-overlay a:hover { color: var(--accent); transform: scale(1.05); }
+.mobile-nav-overlay .close-btn {
+  position: absolute; top: 28px; right: 36px;
+  font-size: 1.8rem; color: var(--text-dim); cursor: pointer;
+  transition: color .3s;
+}
+.mobile-nav-overlay .close-btn:hover { color: var(--accent); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  padding: 120px 40px 60px;
+  overflow: hidden;
+}
+
+/* animated grid bg */
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
+}
+
+/* floating accent blobs */
+.blob {
+  position: absolute; border-radius: 50%; filter: blur(90px); opacity: .25;
+  animation: float 8s ease-in-out infinite;
+  pointer-events: none;
+}
+.blob-1 { width: 320px; height: 320px; background: var(--accent); top: 10%; left: -8%; animation-delay: 0s; }
+.blob-2 { width: 240px; height: 240px; background: var(--cyan); bottom: 8%; right: -6%; animation-delay: -3s; }
+.blob-3 { width: 180px; height: 180px; background: var(--gold); top: 55%; left: 60%; animation-delay: -5s; opacity: .15; }
+
+@keyframes float {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%     { transform: translate(20px,-30px) scale(1.06); }
+  66%     { transform: translate(-15px,20px) scale(.96); }
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 780px; width: 100%;
+  text-align: left;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .75rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+.hero-tag .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50%     { box-shadow: 0 0 0 8px transparent; }
+}
+
+.hero-content h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.035em;
+  color: #fff;
+}
+.hero-content h1 .line { display: block; }
+.hero-content h1 .accent { color: var(--accent); }
+.hero-content h1 .dim { color: var(--text-dim); font-weight: 400; }
+
+.hero-sub {
+  margin-top: 28px;
+  font-size: .92rem;
+  color: var(--text-dim);
+  max-width: 480px;
+  line-height: 1.7;
+}
+.hero-sub strong { color: var(--cyan); font-weight: 500; }
+
+.hero-ctas {
+  margin-top: 36px;
+  display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 30px;
+  background: var(--accent);
+  color: #0a0c0f;
+  font-weight: 600; font-size: .82rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  border-radius: 6px;
+  transition: background .3s, transform .2s, box-shadow .3s;
+}
+.btn-primary:hover {
+  background: var(--accent2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px var(--accent-glow);
+}
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 500; font-size: .82rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  border-radius: 6px;
+  transition: border-color .3s, color .3s, transform .2s;
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.hero-socials {
+  margin-top: 48px;
+  display: flex; gap: 20px;
+}
+.hero-socials a {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-size: 1rem;
+  transition: border-color .3s, color .3s, transform .2s;
+}
+.hero-socials a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* scroll hint */
+.scroll-hint {
+  position: absolute; bottom: 36px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--text-dim); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+  z-index: 2;
+  animation: bob 2s ease-in-out infinite;
+}
+.scroll-hint .arrow { font-size: 1rem; }
+@keyframes bob {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%     { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============================================================
+   SECTION COMMONS
+   ============================================================ */
+.section-pad { padding: 120px 40px; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.section-label::before {
+  content: ''; width: 28px; height: 2px; background: var(--accent);
+}
+
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  margin-bottom: 16px;
+}
+.section-desc {
+  color: var(--text-dim);
+  font-size: .9rem;
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+/* reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   ABOUT / EXPERTISE
+   ============================================================ */
+#about { background: var(--surface); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 56px;
+}
+.about-text p {
+  color: var(--text-dim);
+  font-size: .88rem;
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+.about-text p strong { color: var(--cyan); font-weight: 500; }
+
+.about-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  margin-top: 36px;
+}
+.stat-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 20px;
+  transition: border-color .3s, transform .2s;
+}
+.stat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.stat-card .stat-num {
+  font-family: var(--font-head);
+  font-size: 1.8rem; font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-card .stat-label {
+  font-size: .72rem;
+  color: var(--text-dim);
+  margin-top: 6px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* skill bars */
+.skills-wrap { margin-top: 48px; }
+.skills-wrap h3 {
+  font-family: var(--font-head);
+  font-size: 1.1rem; font-weight: 600; color: #fff;
+  margin-bottom: 24px;
+}
+.skill-row {
+  margin-bottom: 18px;
+}
+.skill-row-top {
+  display: flex; justify-content: space-between;
+  margin-bottom: 7px;
+}
+.skill-row-top span { font-size: .8rem; color: var(--text-dim); }
+.skill-row-top .pct { color: var(--accent); font-weight: 600; }
+.skill-bar-bg {
+  height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%; border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+  width: 0;
+  transition: width 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+/* ============================================================
+   AWARDS
+   ============================================================ */
+#awards { background: var(--bg); }
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 56px;
+}
+.award-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s, transform .25s, box-shadow .3s;
+}
+.award-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.3);
+}
+.award-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+  opacity: 0; transition: opacity .3s;
+}
+.award-card:hover::before { opacity: 1; }
+
+.award-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+.award-icon .gold { color: var(--gold); }
+.award-icon .cyan { color: var(--cyan); }
+
+.award-card h3 {
+  font-family: var(--font-head);
+  font-size: .95rem; font-weight: 600; color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.award-card p {
+  font-size: .78rem; color: var(--text-dim); line-height: 1.6;
+}
+.award-card .cert-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 12px;
+  font-size: .73rem;
+  color: var(--accent);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: color .3s;
+}
+.award-card .cert-link:hover { color: var(--cyan); }
+
+/* ============================================================
+   PROJECTS / PORTFOLIO
+   ============================================================ */
+#projects { background: var(--surface); }
+
+.project-tabs {
+  display: flex; gap: 10px; margin-top: 48px; flex-wrap: wrap;
+}
+.project-tab {
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  cursor: pointer;
+  background: transparent;
+  transition: all .3s;
+}
+.project-tab:hover, .project-tab.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 22px;
+  margin-top: 32px;
+}
+.project-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color .3s, transform .25s, box-shadow .3s;
+  display: flex; flex-direction: column;
+}
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.35);
+}
+.project-card-img {
+  height: 180px;
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.8rem;
+  position: relative; overflow: hidden;
+}
+.project-card-img .icon-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 70%, var(--accent-glow), transparent 60%);
+}
+.project-card-img i { position: relative; z-index: 1; color: var(--accent); }
+
+.project-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.project-card-body .tag-row {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.tag {
+  font-size: .68rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  letter-spacing: .04em;
+}
+.project-card-body h3 {
+  font-family: var(--font-head);
+  font-size: 1.05rem; font-weight: 600; color: #fff;
+  margin-bottom: 10px; line-height: 1.3;
+}
+.project-card-body p {
+  font-size: .8rem; color: var(--text-dim); line-height: 1.7; flex: 1;
+}
+.project-card-links {
+  display: flex; gap: 14px; margin-top: 18px;
+}
+.project-card-links a {
+  font-size: .72rem; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 5px;
+  letter-spacing: .06em; text-transform: uppercase;
+  transition: color .3s;
+}
+.project-card-links a:hover { color: var(--cyan); }
+
+/* ============================================================
+   EXPERIENCE / WHAT I DO
+   ============================================================ */
+#experience { background: var(--bg); }
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 56px;
+}
+.exp-timeline { position: relative; padding-left: 28px; }
+.exp-timeline::before {
+  content: '';
+  position: absolute; left: 0; top: 6px; bottom: 0;
+  width: 2px; background: var(--border);
+}
+.exp-item {
+  position: relative;
+  margin-bottom: 32px;
+}
+.exp-item::before {
+  content: '';
+  position: absolute; left: -28px; top: 8px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 3px var(--accent);
+}
+.exp-item .exp-date {
+  font-size: .7rem; color: var(--accent); letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.exp-item h4 {
+  font-family: var(--font-head);
+  font-size: .95rem; font-weight: 600; color: #fff;
+  margin-bottom: 4px;
+}
+.exp-item p {
+  font-size: .8rem; color: var(--text-dim); line-height: 1.6;
+}
+
+.expertise-list { display: flex; flex-direction: column; gap: 16px; }
+.expertise-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  display: flex; gap: 18px; align-items: flex-start;
+  transition: border-color .3s, transform .2s;
+}
+.expertise-item:hover { border-color: var(--accent); transform: translateX(4px); }
+.expertise-icon {
+  width: 40px; height: 40px; min-width: 40px;
+  border-radius: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .95rem; color: var(--accent);
+}
+.expertise-item h4 {
+  font-family: var(--font-head);
+  font-size: .88rem; font-weight: 600; color: #fff;
+  margin-bottom: 3px;
+}
+.expertise-item p { font-size: .77rem; color: var(--text-dim); line-height: 1.5; }
+
+/* ============================================================
+   EDUCATION
+   ============================================================ */
+#education { background: var(--surface); }
+
+.edu-timeline { max-width: 720px; margin: 56px auto 0; }
+.edu-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 24px;
+  position: relative;
+  padding-bottom: 40px;
+}
+.edu-item:last-child { padding-bottom: 0; }
+.edu-item::after {
+  content: '';
+  position: absolute; left: 50px; top: 28px; bottom: 0;
+  width: 2px; background: var(--border);
+}
+.edu-item:last-child::after { display: none; }
+
+.edu-date {
+  text-align: center; position: relative; z-index: 1;
+}
+.edu-date .dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 3px var(--accent);
+  margin: 0 auto 8px;
+}
+.edu-date span {
+  font-size: .68rem; color: var(--text-dim);
+  letter-spacing: .06em;
+}
+
+.edu-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  transition: border-color .3s;
+}
+.edu-card:hover { border-color: var(--accent); }
+.edu-card h3 {
+  font-family: var(--font-head);
+  font-size: .95rem; font-weight: 600; color: #fff;
+  margin-bottom: 4px;
+}
+.edu-card .edu-loc {
+  font-size: .72rem; color: var(--text-dim); margin-bottom: 8px;
+}
+.edu-card .edu-detail {
+  font-size: .79rem; color: var(--text-dim); line-height: 1.6;
+}
+.edu-card .edu-detail strong { color: var(--cyan); font-weight: 500; }
+.edu-card .cgpa-badge {
+  display: inline-block; margin-top: 10px;
+  padding: 4px 12px;
+  background: var(--accent-glow);
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  font-size: .72rem; color: var(--accent); font-weight: 600;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+#contact { background: var(--bg); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 56px;
+  align-items: start;
+}
+.contact-info .info-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  margin-bottom: 28px;
+}
+.contact-info .info-icon {
+  width: 42px; height: 42px; min-width: 42px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; color: var(--accent);
+}
+.contact-info .info-text strong {
+  display: block;
+  font-size: .72rem; color: var(--text-dim);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.contact-info .info-text span { font-size: .82rem; color: var(--text); }
+
+.contact-socials {
+  display: flex; gap: 12px; margin-top: 36px;
+}
+.contact-socials a {
+  width: 42px; height: 42px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-dim);
+  font-size: 1rem;
+  transition: border-color .3s, color .3s, transform .2s;
+}
+.contact-socials a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* form */
+.contact-form { display: flex; flex-direction: column; gap: 18px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label {
+  font-size: .7rem; color: var(--text-dim);
+  letter-spacing: .12em; text-transform: uppercase;
+}
+.form-group input, .form-group textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 13px 16px;
+  color: var(--text);
+  font-size: .84rem;
+  transition: border-color .3s;
+  outline: none;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-dim); }
+.form-group textarea { resize: vertical; min-height: 130px; }
+
+.btn-send {
+  align-self: flex-start;
+  padding: 14px 36px;
+  background: var(--accent);
+  color: #0a0c0f;
+  font-weight: 600; font-size: .8rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background .3s, transform .2s, box-shadow .3s;
+}
+.btn-send:hover {
+  background: var(--accent2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px var(--accent-glow);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 40px;
+  text-align: center;
+}
+footer p { font-size: .74rem; color: var(--text-dim); }
+footer .footer-links { margin-top: 10px; }
+footer .footer-links a {
+  font-size: .74rem; color: var(--text-dim);
+  margin: 0 12px;
+  transition: color .3s;
+}
+footer .footer-links a:hover { color: var(--accent); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .about-grid,
+  .experience-grid,
+  .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+  nav#main-nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .section-pad { padding: 80px 24px; }
+  #hero { padding: 100px 24px 60px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .awards-grid { grid-template-columns: 1fr; }
+  .edu-item { grid-template-columns: 1fr; gap: 12px; }
+  .edu-item::after { left: 0; top: 0; bottom: 0; width: 2px; }
+  .edu-date { text-align: left; display: flex; align-items: center; gap: 10px; }
+  .edu-date .dot { margin: 0; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 420px) {
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .about-stats { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-         <div class="sidebar">
-            <div class="profile">
-                <img src="images/profile.jpg" alt="Profile Picture">
-                <h2>Atuegbe God'stime Ehischioya</h2>
-            </div>
-            <nav>
-                <ul>
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="what_i_do.html">What I Do</a>
-                <a href="resume.html">Resume</a>
-                <a href="portfolio.html">Portfolio</a>
-                <a href="contact.html">Contact</a>
-                </ul>
-            </nav>
-            <footer>
-                <p>&copy; 2025 Atuegbe God'stime Ehischioya</p>
-            </footer>
-         </div>
-         <div class="home-container">
-            <h2>Welcome</h2>
-            <h1 class="animated-title">I'm Atuegbe God'stime Ehischioya</h1>
-            <p class="p-home">based in Port-Harcourt, Rivers state Nigeria.</p>
-            <a href="contact.html" class="styled-button">Hire Me</a>
-        </div>
-    </div>   
-    
-    <script>
-        const text = "Welcome to My Portfolio";
-        let index = 0;
 
-        function typeText() {
-            document.getElementById("tying").textContent = text.slice(0, index++);
-            if (index <= text.length) {
-                setTimeout(typeText, 100);
-            }
-        }
-        document.addEventListener("DOMContentLoaded", typeText);
-    </script>
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- ======== NAV ======== -->
+<nav id="main-nav">
+  <div class="nav-logo">AGE<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Nav Overlay -->
+<div class="mobile-nav-overlay" id="mobile-nav">
+  <span class="close-btn" id="close-nav">&times;</span>
+  <a href="#hero">Home</a>
+  <a href="#about">About</a>
+  <a href="#awards">Awards</a>
+  <a href="#projects">Projects</a>
+  <a href="#experience">Experience</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ======== HERO ======== -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag"><div class="dot"></div>Available for opportunities</div>
+    <h1>
+      <span class="line">Hi, I'm <span class="accent">God'stime</span></span>
+      <span class="line dim">Electrical Engineer</span>
+      <span class="line">&amp; <span class="accent">Developer</span></span>
+    </h1>
+    <p class="hero-sub">
+      A <strong>B.Eng graduate</strong> specializing in instrumentation &amp; control — building award-winning automation systems, IoT solutions, and sustainable energy projects out of Port-Harcourt, Nigeria.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary"><i class="fas fa-eye"></i> View Projects</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-envelope"></i> Contact Me</a>
+    </div>
+    <div class="hero-socials">
+      <a href="https://github.com/DarkAge-001" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/god%E2%80%99stime-atuegbe-a026ab2b9" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://x.com/official_age01" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://wa.me/2348106313407" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <span class="arrow">&#9662;</span>
+  </div>
+</section>
+
+<!-- ======== ABOUT ======== -->
+<section id="about" class="section-pad">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">The Engineer<br>Behind the Ideas</h2>
+      <p class="section-desc">Turning real-world problems into elegant, sustainable engineering solutions.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm <strong>Atuegbe God'stime Ehischioya</strong> — an Electrical &amp; Electronics Engineer with a deep specialization in <strong>instrumentation and control</strong>. My work lives at the intersection of automation, smart technologies, and renewable energy.
+        </p>
+        <p>
+          My technical toolkit spans <strong>Python programming</strong>, web development, and electronics simulation with industry tools like <strong>Proteus and KiCad</strong>. I design and build user-focused systems that bridge theory and real-world impact.
+        </p>
+        <p>
+          Whether I'm leading a team project or working independently, my goal is to deliver solutions that are not just technically sound — but genuinely useful to people. I'm currently exploring advanced <strong>Python frameworks, AI-driven technologies, and IoT systems</strong> to contribute to transformative projects in energy and smart systems.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-num">4.34</div>
+            <div class="stat-label">CGPA / 5.0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">6+</div>
+            <div class="stat-label">Awards Won</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">1.5+</div>
+            <div class="stat-label">Yrs Experience</div>
+          </div>
+        </div>
+
+        <div class="skills-wrap">
+          <h3>Core Skills</h3>
+          <div class="skill-row">
+            <div class="skill-row-top"><span>Python / Flask</span><span class="pct">88%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-top"><span>Circuit Design (Proteus / KiCad)</span><span class="pct">92%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-top"><span>Arduino / C++ / Embedded</span><span class="pct">85%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-top"><span>IoT &amp; Automation</span><span class="pct">82%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="82"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-top"><span>HTML / CSS / Web Dev</span><span class="pct">80%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-top"><span>Power Systems &amp; Distribution</span><span class="pct">78%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="78"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== AWARDS ======== -->
+<section id="awards" class="section-pad">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Recognition</div>
+      <h2 class="section-title">Awards &amp; Certifications</h2>
+      <p class="section-desc" style="margin:0 auto;">Achievements that reflect a commitment to innovation, excellence, and engineering leadership.</p>
+    </div>
+    <div class="awards-grid">
+
+      <div class="award-card reveal">
+        <div class="award-icon"><i class="fas fa-trophy gold"></i></div>
+        <h3>1st Place — ICEPT 2024</h3>
+        <p>Best Innovative Project at the NIEEE 40th Annual Conference, Abuja. Recognised for the <em>Automated Electric Fish Dryer with Solar Backup</em> — a sustainable solution for rural fish preservation.</p>
+        <a href="images/icept-award.jpg" target="_blank" class="cert-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+      </div>
+
+      <div class="award-card reveal">
+        <div class="award-icon"><i class="fas fa-trophy gold"></i></div>
+        <h3>1st Place — STEW 2024</h3>
+        <p>Best Innovative Project during Science, Technology &amp; Engineering Week, organised by NIEEE Warri Chapter in Delta State. Same solar-powered fish dryer project.</p>
+        <a href="images/stew-certificate2.jpg" target="_blank" class="cert-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+      </div>
+
+      <div class="award-card reveal">
+        <div class="award-icon"><i class="fas fa-star cyan"></i></div>
+        <h3>Vice-Chancellor's Prize</h3>
+        <p>Best graduating student in the Department of Electrical Engineering, 2023/2024 academic session at Nigeria Maritime University.</p>
+        <a href="images/vc-cert.jpg" target="_blank" class="cert-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+      </div>
+
+      <div class="award-card reveal">
+        <div class="award-icon"><i class="fas fa-medal cyan"></i></div>
+        <h3>Dean's Prize</h3>
+        <p>Best graduating Electrical Engineering student 2023/2024, awarded by the Dean of the Faculty of Engineering.</p>
+        <a href="images/dean-cert.jpg" target="_blank" class="cert-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+      </div>
+
+      <div class="award-card reveal">
+        <div class="award-icon"><i class="fas fa-users cyan"></i></div>
+        <h3>SPE NMU Chapter</h3>
+        <p>Certificate of Active Membership &amp; Volunteering. Attended numerous webinars and physical events organised by SPE Warri, NMU Chapter.</p>
+        <a href="images/spe-cert.jpg" target="_blank" class="cert-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+      </div>
+
+      <div class="award-card reveal">
+        <div class="award-icon"><i class="fas fa-music cyan"></i></div>
+        <h3>Certificate of Regimentation</h3>
+        <p>Served in the NMU Band Department as Head of Tenor Section from first year through graduation — demonstrating discipline and leadership.</p>
+        <a href="images/regiment.jpg" target="_blank" class="cert-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======== PROJECTS ======== -->
+<section id="projects" class="section-pad">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Portfolio</div>
+      <h2 class="section-title">Projects I've Built</h2>
+      <p class="section-desc">Hardware, software, and end-to-end systems — every project built with intent.</p>
+    </div>
+
+    <div class="project-tabs">
+      <button class="project-tab active" data-filter="all">All</button>
+      <button class="project-tab" data-filter="hardware">Hardware</button>
+      <button class="project-tab" data-filter="iot">IoT</button>
+      <button class="project-tab" data-filter="software">Software</button>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Fish Dryer -->
+      <div class="project-card reveal" data-cat="hardware iot">
+        <div class="project-card-img">
+          <div class="icon-bg"></div>
+          <i class="fas fa-sun"></i>
+        </div>
+        <div class="project-card-body">
+          <div class="tag-row">
+            <span class="tag">Solar Energy</span>
+            <span class="tag">Automation</span>
+            <span class="tag">Arduino</span>
+          </div>
+          <h3>Automated Electric Fish Dryer</h3>
+          <p>An automated drying system with solar-panel backup power. Uses temperature &amp; timer controls to optimise drying, offering sustainable fish preservation for rural communities — and reducing carbon emissions from traditional smoke drying. <strong style="color:var(--gold);">Won 1st place at both ICEPT 2024 and STEW 2024.</strong></p>
+          <div class="project-card-links">
+            <span style="font-size:.72rem;color:var(--text-dim);">Team: Divine T. Akyigh, Ojo A. Oghenefejiro</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Robotic Car -->
+      <div class="project-card reveal" data-cat="hardware">
+        <div class="project-card-img" style="background:var(--surface);">
+          <div class="icon-bg" style="background:radial-gradient(circle at 70% 30%, rgba(56,189,248,.18), transparent 60%);"></div>
+          <i class="fas fa-robot" style="color:var(--cyan);"></i>
+        </div>
+        <div class="project-card-body">
+          <div class="tag-row">
+            <span class="tag">Ultrasonic Sensor</span>
+            <span class="tag">Arduino</span>
+            <span class="tag">Autonomous</span>
+          </div>
+          <h3>Obstacle Avoidance Robotic Car</h3>
+          <p>An autonomous vehicle that detects and avoids obstacles in real time using ultrasonic sensors and path-adjustment algorithms. Built as a 500-level team capstone project during university.</p>
+        </div>
+      </div>
+
+      <!-- Smart Waste -->
+      <div class="project-card reveal" data-cat="iot hardware">
+        <div class="project-card-img" style="background:var(--surface);">
+          <div class="icon-bg" style="background:radial-gradient(circle at 50% 80%, rgba(240,192,64,.15), transparent 60%);"></div>
+          <i class="fas fa-trash-can" style="color:var(--gold);"></i>
+        </div>
+        <div class="project-card-body">
+          <div class="tag-row">
+            <span class="tag">IoT</span>
+            <span class="tag">Sensors</span>
+            <span class="tag">Cloud</span>
+          </div>
+          <h3>IoT Smart Waste Management</h3>
+          <p>Sensors and microcontrollers monitor bin fill-levels in real time, sending alerts to municipal authorities via cloud platforms. Optimises collection routes, cuts costs, and supports environmental sustainability.</p>
+        </div>
+      </div>
+
+      <!-- Smart Home -->
+      <div class="project-card reveal" data-cat="iot">
+        <div class="project-card-img" style="background:var(--surface);">
+          <div class="icon-bg" style="background:radial-gradient(circle at 40% 60%, rgba(57,224,121,.15), transparent 55%);"></div>
+          <i class="fas fa-house-signal"></i>
+        </div>
+        <div class="project-card-body">
+          <div class="tag-row">
+            <span class="tag">IoT</span>
+            <span class="tag">Automation</span>
+            <span class="tag">ESP32</span>
+          </div>
+          <h3>IoT Smart Home Automation</h3>
+          <p>Remote monitoring &amp; control of household devices — lighting, temperature, security, and energy management — through sensors, actuators, and wireless protocols.</p>
+          <div class="project-card-links">
+            <a href="https://github.com/DarkAge-001/Home-Automation" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Python Programs -->
+      <div class="project-card reveal" data-cat="software">
+        <div class="project-card-img" style="background:var(--surface);">
+          <div class="icon-bg" style="background:radial-gradient(circle at 60% 40%, rgba(56,189,248,.18), transparent 55%);"></div>
+          <i class="fab fa-python" style="color:var(--cyan);"></i>
+        </div>
+        <div class="project-card-body">
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Automation</span>
+            <span class="tag">Utilities</span>
+          </div>
+          <h3>Python Developer Programs</h3>
+          <p>A collection of utility programs: String Reversal, Calculator, Temperature Converter, Email Validator, and an automated File Management System for PC tasks.</p>
+          <div class="project-card-links">
+            <a href="https://github.com/DarkAge-001/internship-update" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======== EXPERIENCE ======== -->
+<section id="experience" class="section-pad">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Career</div>
+      <h2 class="section-title">Experience &amp; Expertise</h2>
+      <p class="section-desc">Hands-on training and the competencies I bring to every project.</p>
+    </div>
+
+    <div class="experience-grid">
+
+      <!-- Timeline -->
+      <div class="reveal">
+        <h3 style="font-family:var(--font-head);font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:24px;">Timeline</h3>
+        <div class="exp-timeline">
+          <div class="exp-item">
+            <div class="exp-date">2024 – Present</div>
+            <h4>Freelance Engineer & Developer</h4>
+            <p>Building IoT systems, web projects, and embedded solutions independently while continuing professional development.</p>
+          </div>
+          <div class="exp-item">
+            <div class="exp-date">SIWES Internship</div>
+            <h4>FAAN – Port-Harcourt International Airport</h4>
+            <p>Hands-on training in power distribution management using Ring Main Units. Operated RMUs and connected feeder pillars within 11kV/33kV ring systems.</p>
+          </div>
+          <div class="exp-item">
+            <div class="exp-date">2019 – 2025</div>
+            <h4>Nigeria Maritime University</h4>
+            <p>B.Eng Electrical Engineering (Instrumentation &amp; Control). CGPA 4.34/5.0. Multiple awards for academic and project excellence.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expertise cards -->
+      <div class="reveal">
+        <h3 style="font-family:var(--font-head);font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:24px;">Core Expertise</h3>
+        <div class="expertise-list">
+          <div class="expertise-item">
+            <div class="expertise-icon"><i class="fas fa-microchip"></i></div>
+            <div>
+              <h4>Circuit &amp; Schematic Design</h4>
+              <p>Professional-grade designs in Proteus &amp; KiCad with full simulation validation and PCB layout.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <div class="expertise-icon"><i class="fas fa-bolt"></i></div>
+            <div>
+              <h4>Power Distribution</h4>
+              <p>Ring Main Unit operation, feeder pillar connections, and end-to-end power management from high-voltage substations.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <div class="expertise-icon"><i class="fas fa-wifi"></i></div>
+            <div>
+              <h4>IoT &amp; Smart Systems</h4>
+              <p>Full-stack IoT from sensor selection through firmware to cloud dashboards and real-time alerting.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <div class="expertise-icon"><i class="fas fa-code"></i></div>
+            <div>
+              <h4>Python &amp; Web Development</h4>
+              <p>Flask back-ends, automation scripts, data utilities, and responsive front-end interfaces.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <div class="expertise-icon"><i class="fas fa-tools"></i></div>
+            <div>
+              <h4>Installation &amp; Maintenance</h4>
+              <p>Residential, commercial, and industrial electrical systems — wiring, repair, and preventive maintenance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======== EDUCATION ======== -->
+<section id="education" class="section-pad">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Education</div>
+      <h2 class="section-title">Academic Journey</h2>
+      <p class="section-desc" style="margin:0 auto;">From first principles to first-class engineering.</p>
+    </div>
+
+    <div class="edu-timeline">
+      <div class="edu-item reveal">
+        <div class="edu-date">
+          <div class="dot"></div>
+          <span>2019–2025</span>
+        </div>
+        <div class="edu-card">
+          <h3>Nigeria Maritime University</h3>
+          <p class="edu-loc"><i class="fas fa-map-marker-alt"></i> Okerenkoko, Delta State</p>
+          <p class="edu-detail">
+            <strong>B.Eng – Electrical Engineering</strong><br>
+            Major: Instrumentation &amp; Control Engineering
+          </p>
+          <span class="cgpa-badge">CGPA 4.34 / 5.0 — Second Class Upper</span>
+        </div>
+      </div>
+
+      <div class="edu-item reveal">
+        <div class="edu-date">
+          <div class="dot"></div>
+          <span>2016–2019</span>
+        </div>
+        <div class="edu-card">
+          <h3>Ritch Model School</h3>
+          <p class="edu-loc"><i class="fas fa-map-marker-alt"></i> Eneka, Port-Harcourt</p>
+          <p class="edu-detail"><strong>Senior WASSCE</strong></p>
+        </div>
+      </div>
+
+      <div class="edu-item reveal">
+        <div class="edu-date">
+          <div class="dot"></div>
+          <span>2013–2016</span>
+        </div>
+        <div class="edu-card">
+          <h3>Ritch Model School</h3>
+          <p class="edu-loc"><i class="fas fa-map-marker-alt"></i> Eneka, Port-Harcourt</p>
+          <p class="edu-detail"><strong>Junior WASSCE</strong></p>
+        </div>
+      </div>
+
+      <div class="edu-item reveal">
+        <div class="edu-date">
+          <div class="dot"></div>
+          <span>2012</span>
+        </div>
+        <div class="edu-card">
+          <h3>Delightsome Pearl Nursery &amp; Primary School</h3>
+          <p class="edu-loc"><i class="fas fa-map-marker-alt"></i> Eneka, Port-Harcourt</p>
+          <p class="edu-detail"><strong>First School Leaving Certificate</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resume CTA -->
+    <div class="reveal" style="text-align:center;margin-top:60px;">
+      <a href="assets/my_cv.pdf" target="_blank" class="btn-primary"><i class="fas fa-file-alt"></i> Download Resume</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======== CONTACT ======== -->
+<section id="contact" class="section-pad">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Let's Work Together</h2>
+      <p class="section-desc">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Info side -->
+      <div class="reveal">
+        <div class="contact-info">
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-text">
+              <strong>Location</strong>
+              <span>Port-Harcourt, Rivers State, Nigeria</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div class="info-text">
+              <strong>Email</strong>
+              <span><a href="mailto:godstimeatuegbe48@gmail.com" style="color:var(--text);transition:color .3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">godstimeatuegbe48@gmail.com</a></span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-phone"></i></div>
+            <div class="info-text">
+              <strong>Phone</strong>
+              <span>+234 810 631 3407</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-socials">
+          <a href="https://github.com/DarkAge-001" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/god%E2%80%99stime-atuegbe-a026ab2b9" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://x.com/official_age01" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://wa.me/2348106313407" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Form side -->
+      <div class="reveal">
+        <form class="contact-form" action="https://formspree.io/f/meoeoojy" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="What's this about?">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project or idea…" required></textarea>
+          </div>
+          <button type="submit" class="btn-send"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== FOOTER ======== -->
+<footer>
+  <p>&copy; 2025 Atuegbe God'stime Ehischioya. All Rights Reserved.</p>
+  <div class="footer-links">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JS — Nav scroll, reveal, skill bars, hamburger, tabs, progress
+     ============================================================ -->
+<script>
+(function(){
+  // --- Progress bar ---
+  const progBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop  = window.scrollY;
+    const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
+    progBar.style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  // --- Nav shrink on scroll ---
+  const mainNav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    mainNav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // --- Active nav link (scroll spy) ---
+  const sections  = [...document.querySelectorAll('section[id]')];
+  const navLinks  = [...document.querySelectorAll('.nav-links a')];
+  const observer  = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = navLinks.find(l => l.getAttribute('href') === '#' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // --- Hamburger / mobile nav ---
+  const hamburger   = document.getElementById('hamburger');
+  const mobileNav   = document.getElementById('mobile-nav');
+  const closeNavBtn = document.getElementById('close-nav');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  closeNavBtn.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+
+  // --- Reveal on scroll ---
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // trigger skill bars if inside this element
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => revealObs.observe(el));
+
+  // --- Project filter tabs ---
+  const tabs  = document.querySelectorAll('.project-tab');
+  const cards = document.querySelectorAll('.project-card');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      cards.forEach(card => {
+        const cats = card.dataset.cat || 'all';
+        const show = filter === 'all' || cats.includes(filter);
+        card.style.display = show ? 'flex' : 'none';
+        // re-trigger reveal
+        if (show) { card.classList.remove('visible'); setTimeout(() => card.classList.add('visible'), 50); }
+      });
+    });
+  });
+
+  // Smooth scroll for all in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

@@ -1,0 +1,37 @@
+about.html
+index11.html
+what_i_do.html
+portfolio.html
+resume.html
+contact.html
+styles.css
+scripts.js
+images/
+  logo.png
+  profile.jpg
+  background.jpg
+node_modules/
+.DS_Store
+.env
+package-lock.json
+package.json
+.vscode/
+.idea/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+dist/build/
+coverage/
+.cache/
+*.iml
+out/
+*.class
+*.jar
+*.war
+*.exe
+*.dll
+*.pdb
+*.o
+*.obj
